@@ -1,5 +1,6 @@
 ---
 import '../styles.css';
+import Navbar from '../components/Navbar.astro';
 ---
 
 <html lang="en" class="bg-black text-white h-full">
@@ -10,9 +11,10 @@ import '../styles.css';
     <meta name="generator" content={Astro.generator} />
     <title>Maison Atelier</title>
   </head>
-  <body class="min-h-screen bg-black flex items-center justify-center">
-    <main class="text-center">
-      <h1 class="text-3xl tracking-[0.4em] uppercase">Maison Atelier</h1>
-    </main>
-  </body>
+<body class="min-h-screen bg-black text-white flex flex-col">
+  <Navbar />
+  <main class="flex-1 flex items-center justify-center px-6 text-center">
+    <h1 class="text-3xl tracking-[0.4em] uppercase">Maison Atelier</h1>
+  </main>
+</body>
 </html>
