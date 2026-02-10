@@ -1,0 +1,21 @@
+{
+  "name": "storefront",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.10.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "format": "turbo format",
+    "oxlint": "oxlint \"apps/**/*.{ts,tsx,js,jsx,astro}\"",
+    "prettier:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,css,md}\"",
+    "prettier:write": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,css,md}\""
+  },
+  "devDependencies": {
+    "oxlint": "^0.9.4",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.0",
+    "turbo": "^2.2.3"
+  }
+}

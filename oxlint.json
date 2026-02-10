@@ -1,0 +1,7 @@
+{
+  "$schema": "https://oxlint.com/schema.json",
+  "extends": ["recommended"],
+  "rules": {
+    "no-console": "warn"
+  }
+}
