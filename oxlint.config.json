@@ -1,7 +1,0 @@
-{
-  "$schema": "https://raw.githubusercontent.com/oxc-project/oxlint/main/configuration_schema.json",
-  "rules": {
-    "recommended": true,
-    "style": true
-  }
-}
