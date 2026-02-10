@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Space_Grotesk } from "next/font/google";
+import { getTranslations } from "@/lib/server/locale";
+import { TranslationsProvider } from "./providers/TranslationsProvider";
 import "./globals.css";
 
 const displaySerif = Cormorant_Garamond({
@@ -19,15 +21,19 @@ export const metadata: Metadata = {
   description: "A curated maison for timeless silhouettes.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { locale, messages } = await getTranslations();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${displaySerif.variable} ${bodySans.variable} antialiased`}>
-        {children}
+        <TranslationsProvider locale={locale} messages={messages}>
+          {children}
+        </TranslationsProvider>
       </body>
     </html>
   );
