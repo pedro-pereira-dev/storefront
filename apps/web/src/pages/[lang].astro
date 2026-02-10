@@ -2,9 +2,22 @@
 import '../styles.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { DEFAULT_LOCALE, getLocalizedContent, SUPPORTED_LOCALES } from '../i18n';
+import { DEFAULT_LOCALE, getLocalizedContent, nonDefaultLocales, resolveLocale, SUPPORTED_LOCALES } from '../i18n';
 
-const { locale, strings } = getLocalizedContent(DEFAULT_LOCALE);
+export function getStaticPaths() {
+  return nonDefaultLocales().map((locale) => ({
+    params: { lang: locale },
+  }));
+}
+
+const requestedLocale = Astro.params.lang;
+const locale = resolveLocale(requestedLocale);
+if (requestedLocale && requestedLocale !== locale) {
+  return Astro.redirect(locale === DEFAULT_LOCALE ? '/' : `/${locale}`);
+}
+
+const { strings } = getLocalizedContent(locale);
+const canonical = locale === DEFAULT_LOCALE ? '/' : `/${locale}`;
 ---
 
 <html lang={locale} class="bg-black text-white h-full">
@@ -14,7 +27,7 @@ const { locale, strings } = getLocalizedContent(DEFAULT_LOCALE);
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={strings.meta.description} />
-    <link rel="canonical" href="/" />
+    <link rel="canonical" href={canonical} />
     <title>{strings.meta.title}</title>
   </head>
   <body class="min-h-screen bg-black text-white flex flex-col">
